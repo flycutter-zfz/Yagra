@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Yagra</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="css/screen.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="nav">
+                <ul>
+                    <li><a title="Log in" href="www/login.html">Login in</a></li>
+                    <li><a title="Sign up" href="www/sign_up.html">Sign up</a></li>
+                </ul>
+            </div>
+            <div id="content" class="column span-15 colborder last">
+                <form method="post" action="../cgi-bin/sign_up.py">
+                    <table>
+                        <tr>
+                            <th align="right">Username:</th>
+                            <td><input type="text" name="username"/></td>
+                        </tr>
+                        <tr>
+                            <th align="right">Password:</th>
+                            <td><input type="password" name="password"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan=2 align="center">
+                                <input type="Submit" value="Sign up"/>
+                            </td>
+                        </tr>
+                        </table>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
