@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>Yagra</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="css/screen.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="nav">
+                <ul>
+                    <li><a title="Log in" href="../cgi-bin/logout.py">Login Out</a></li>
+                    <li><a title="Sign up" href="sign_up.html">Sign up</a></li>
+                </ul>
+            </div>
+            <div id="content" class="column span-15 colborder last">
+                <form enctype="multipart/form-data" method="post" action="../cgi-bin/upload.py">
+                    <p>Username:<input type="text" name="username"/></p>
+                    <p><input type="file" size=50 name="avatar"/></p>
+                    <p><input type="submit" value="Change the Avatar"/></p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
