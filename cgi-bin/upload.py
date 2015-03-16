@@ -1,10 +1,17 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import cgi, os, hashlib
+import cgi
+import os
+import hashlib
+import Cookie
+
+cookie = Cookie.SimpleCookie()
+string_cookie = os.environ.get('HTTP_COOKIE')
+cookie.load(string_cookie)
+username = cookie['username'].value
 
 form = cgi.FieldStorage()
-username = form['username'].value
 avatar = form['avatar']
 
 def fbuffer(f, chunk_size=10000):
@@ -27,9 +34,6 @@ if avatar.filename:
 else:
     message = "Upload avatar failed!"
 
-print """Content-type: text/html\n
-<html>
-<body>
-<p>%s</p>
-</body>
-</html>""" % message
+print 'Content-type: text/html\n'
+template_html = open(r'../www/template.html').read()
+print template_html % message

@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import cgi, MySQLdb, os, binascii, hashlib
+import cgi
+import MySQLdb
+import os
+import binascii
+import hashlib
+import Cookie
 
 form = cgi.FieldStorage()
 username = form['username'].value
@@ -27,13 +32,9 @@ else:
     conn.commit()
     message = "Sign up successfully!"
 
-
 cursor.close()
 conn.close()
 
-print """Content-type: text/html\n
-<html>
-<body>
-<p>%s</p>
-</body>
-</html>""" % message
+print 'Content-type: text/html\n'
+template_html = open(r'../www/template.html').read()
+print template_html % message
