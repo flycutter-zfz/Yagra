@@ -14,6 +14,11 @@
                 </ul>
             </div>
             <div id="content" class="column span-15 colborder last">
+                <p>Yagra images may be requested just like a normal image, using an IMG tag. 
+                To get an image specific to a user, you must first calculate their hash.
+                The most basic image request URL looks like this:
+                Your hash code is: %s</p>
+                <img src="../avatar/%s" width="200" alt="Avatar"/>
                 <form enctype="multipart/form-data" method="post" action="upload.py">
                     <p><input type="file" size=50 name="avatar"/></p>
                     <p><input type="submit" value="Change the Avatar"/></p>

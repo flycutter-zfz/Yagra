@@ -5,6 +5,7 @@ import Cookie
 import os
 import MySQLdb
 import time
+import hashlib
 
 cookie = Cookie.SimpleCookie()
 string_cookie = os.environ.get('HTTP_COOKIE')
@@ -28,7 +29,7 @@ if string_cookie:
             row = cursor.fetchone()
             if row[0] == sid and int(time.time()) - row[2] < row[1]:
                 is_login = True
-                sql = 'update session set lastvisit = %d where username=%s'
+                sql = 'update session set lastvisit = %s where username=%s'
                 param = (int(time.time()), username)
                 cursor.execute(sql, param)
         conn.commit()
@@ -39,8 +40,9 @@ print 'Content-type: text/html\n'
 
 if is_login:
     #The profile page.
+    hashcode = hashlib.md5(username.strip().lower()).hexdigest()
     profile_html = open(r'../www/profile.html').read()
-    print profile_html
+    print profile_html % (hashcode, hashcode)
 else:
     #The login page.
     login_html = open(r'../www/login.html').read()

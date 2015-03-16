@@ -52,8 +52,9 @@ if is_login_succ:
 
     #print the page.
     print 'Content-type: text/html\n'
+    hashcode = hashlib.md5(username.strip().lower()).hexdigest()
     profile_html = open(r'../www/profile.html').read()
-    print profile_html
+    print profile_html % (hashcode, hashcode)
 else:
     print 'Content-type: text/html\n'
     template_html = open(r'../www/template.html').read()
