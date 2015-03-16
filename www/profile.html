@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
         <title>Yagra</title>
@@ -10,13 +11,13 @@
             <div id="nav">
                 <ul>
                     <li><a title="Log in" href="logout.py">Login Out</a></li>
-                    <li><a title="Sign up" href="../www/sign_up.html">Sign up</a></li>
                 </ul>
             </div>
-            <div id="content" class="column span-15 colborder last">
+            <div id="content">
                 <p>Yagra images may be requested just like a normal image, using an IMG tag. 
                 To get an image specific to a user, you must first calculate their hash.
-                The most basic image request URL looks like this:
+                The most basic image request URL looks like this:<br/>
+                http://servername/avatar/HASH<br/>
                 Your hash code is: %s</p>
                 <img src="../avatar/%s" width="200" alt="Avatar"/>
                 <form enctype="multipart/form-data" method="post" action="upload.py">
