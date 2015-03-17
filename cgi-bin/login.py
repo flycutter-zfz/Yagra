@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import cgi
-import MySQLdb
+import Mysql
 import os
 import binascii
 import hashlib
@@ -14,9 +14,8 @@ username = form['username'].value
 password = form['password'].value
 
 #Connect to MySQL
-conn = MySQLdb.connect(host='localhost',user='yagra',passwd='yagratest',
-        db='Yagra',charset='utf8')
-cursor = conn.cursor()
+mysql = Mysql.Mysql()
+cursor = mysql.cursor
 
 #Get the hashed password and salt from Mysql.
 sql = 'select password, salt from user where username = %s'
@@ -61,6 +60,4 @@ else:
     message = "Invalid username or password!"
     print template_html % message
 
-conn.commit()
-cursor.close()
-conn.close()
+mysql.close()

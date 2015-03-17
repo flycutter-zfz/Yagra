@@ -3,7 +3,7 @@
 
 import Cookie
 import os
-import MySQLdb
+import Mysql
 import time
 import hashlib
 
@@ -18,9 +18,8 @@ if string_cookie:
     if cookie.has_key('username') and cookie.has_key('sid'):
         username = cookie['username'].value
         sid = cookie['sid'].value
-        conn = MySQLdb.connect(host='localhost',user='yagra',passwd='yagratest',
-                db='Yagra', charset='utf8')
-        cursor = conn.cursor()
+        mysql = Mysql.Mysql()
+        cursor = mysql.cursor
         sql = 'select sid, expires, lastvisit from session where username=%s'
         param = (username)
         n = cursor.execute(sql, param)
@@ -32,9 +31,7 @@ if string_cookie:
                 sql = 'update session set lastvisit = %s where username=%s'
                 param = (int(time.time()), username)
                 cursor.execute(sql, param)
-        conn.commit()
-        cursor.close()
-        conn.close()
+        mysql.close()
 
 print 'Content-type: text/html\n'
 

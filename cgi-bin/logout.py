@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import MySQLdb
+import Mysql
 import os
 import Cookie
 
@@ -11,18 +11,15 @@ cookie.load(string_cookie)
 username = cookie['username'].value
 
 #Connect to MySQL
-conn = MySQLdb.connect(host='localhost',user='yagra',passwd='yagratest',
-        db='Yagra',charset='utf8')
-cursor = conn.cursor()
+mysql = Mysql.Mysql()
+cursor = mysql.cursor
 
 #Delete the session information.
 sql = 'delete from session where username = %s'
 param = username
 n = cursor.execute(sql, param)
 
-conn.commit()
-cursor.close()
-conn.close()
+mysql.close()
 
 print 'Content-type: text/html\n'
 login_html = open(r'../www/login.html').read()

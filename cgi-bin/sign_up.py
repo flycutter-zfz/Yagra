@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import cgi
-import MySQLdb
+import Mysql
 import os
 import binascii
 import hashlib
@@ -13,9 +13,8 @@ username = form['username'].value
 password = form['password'].value
 
 #Connect to MySQL
-conn = MySQLdb.connect(host='localhost',user='yagra',passwd='yagratest',
-        db='Yagra',charset='utf8')
-cursor = conn.cursor()
+mysql = Mysql.Mysql()
+cursor = mysql.cursor
 
 #Check whether the username is already exists.
 sql = 'select * from user where username = %s'
@@ -29,11 +28,9 @@ else:
     sql = 'insert into user(username, password, salt) values (%s, %s, %s)'
     param = (username, hashed_password, salt)
     n = cursor.execute(sql, param)
-    conn.commit()
     message = "Sign up successfully!"
 
-cursor.close()
-conn.close()
+mysql.close()
 
 print 'Content-type: text/html\n'
 template_html = open(r'../www/template.html').read()
